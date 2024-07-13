@@ -1,0 +1,44 @@
+<div class="table-responsive">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Description</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of itemList; track $index) {
+          <tr>
+            <th scope="row">{{item.id}}</th>
+            <td>{{item.name}}</td>
+            <td>{{item.description}}</td>
+            <td>
+            </td>
+            <td>
+              <button type="button" [disabled]="!areActionsAvailable" (click)="showDetailModal(item, detailModal)"  class="btn btn-secondary">
+                <i class="fa-solid fa-eye white"
+                ></i>
+              </button>
+              <button type="button" [disabled]="!areActionsAvailable" (click)="deleteGame(item)" class="btn btn-danger">
+                <i class="fa-solid fa-trash white"
+                ></i>
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+  
+  <app-modal #detailModal>
+    <app-categorys-form
+    (callParentEvent)="onFormEventCalled($event)"
+    [title]="'Update Category'"
+    [toUpdateCategory]="selectedItem"
+    />
+      
+    
+  </app-modal>
+  
